@@ -81,7 +81,7 @@ export default function Home() {
               className="relative w-72 h-48 flex-shrink-0 snap-center"
             >
               <Image
-                src={`/image/gallery/gallery${i + 1}.png`} // 실제 이미지 경로로 변경
+                src={`/image/gallery/gallery${i + 1}.png`}
                 alt={`이미지 ${i + 1}`}
                 fill
                 className="object-cover rounded-lg"
@@ -101,21 +101,9 @@ export default function Home() {
         {/* 필요 시 아이콘 추가 예시 */}
         <div className="flex justify-center items-center gap-8 mt-4">
           <div className="flex flex-col items-center">
-            <Image
-              src="/icon-food.png"
-              alt="식사 아이콘"
-              width={40}
-              height={40}
-            />
             <p className="mt-2 text-sm">식사 안내</p>
           </div>
           <div className="flex flex-col items-center">
-            <Image
-              src="/icon-parking.png"
-              alt="주차 아이콘"
-              width={40}
-              height={40}
-            />
             <p className="mt-2 text-sm">주차 안내</p>
           </div>
         </div>
