@@ -2,102 +2,124 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <div className="w-full min-h-screen bg-white text-gray-800">
+      {/* 1. 상단 메인 사진 (Hero Section) */}
+      <section className="relative w-full h-[70vh] overflow-hidden flex items-center justify-center">
+        {/* 필요 시 objectPosition, alt 변경 */}
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="/image/basic/main.png"
+          alt="메인 이미지"
+          fill
+          className="object-cover object-center"
           priority
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        {/* 사진 위에 반투명 오버레이와 문구 */}
+        <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-white px-4">
+          <h1 className="text-3xl font-bold mb-2">우리가 결혼합니다</h1>
+          <p className="text-base">소중한 분들을 초대합니다</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* 2. 예쁜 글귀 섹션 */}
+      <section className="px-4 py-8 text-center">
+        <p className="text-xl italic leading-relaxed">
+          사랑은 함께 자라는 것입니다.
+          <br />
+          두 사람이 세상을 함께 바라보고,
+          <br />
+          서로를 비추며 빛나는 것입니다.
+        </p>
+      </section>
+
+      {/* 3. 장소 및 날짜 (WHEN & WHERE) */}
+      <section className="px-4 py-8 text-center">
+        <h2 className="text-2xl font-bold mb-4">WHEN & WHERE</h2>
+        {/* 간단한 달력 느낌으로 구성 (원하시는 스타일에 맞게 수정) */}
+        <div className="inline-block border border-gray-300 rounded-md p-4">
+          <h3 className="text-lg font-semibold mb-2">2025년 5월</h3>
+          <div className="grid grid-cols-7 gap-1 text-sm">
+            <span className="text-gray-500">일</span>
+            <span className="text-gray-500">월</span>
+            <span className="text-gray-500">화</span>
+            <span className="text-gray-500">수</span>
+            <span className="text-gray-500">목</span>
+            <span className="text-gray-500">금</span>
+            <span className="text-gray-500">토</span>
+            {/* 1일부터 ~ 30일(예시) */}
+            {Array.from({ length: 30 }).map((_, i) => {
+              const day = i + 1;
+              const isWeddingDay = day === 20; // 원하는 날짜에 강조
+              return (
+                <span
+                  key={day}
+                  className={`py-1 ${
+                    isWeddingDay
+                      ? "font-bold text-red-500 underline"
+                      : "text-gray-800"
+                  }`}
+                >
+                  {day}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+        {/* 시간/장소 안내 */}
+        <p className="mt-4 text-lg">2025년 5월 20일 오후 2시</p>
+        <p className="text-lg">서울특별시 강남구 어딘가 웨딩홀</p>
+      </section>
+
+      {/* 4. 갤러리 (좌우로 스크롤 가능한 이미지 슬라이드) */}
+      <section className="px-4 py-8">
+        <h2 className="text-2xl font-bold text-center mb-4">GALLERY</h2>
+        {/* 스크롤을 위해 overflow-x-auto와 flex 사용 */}
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory">
+          {/* 예시 이미지들: 필요한 만큼 반복 */}
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div
+              key={i}
+              className="relative w-72 h-48 flex-shrink-0 snap-center"
+            >
+              <Image
+                src={`/image/gallery/gallery${i + 1}.png`} // 실제 이미지 경로로 변경
+                alt={`이미지 ${i + 1}`}
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. 추가 정보 섹션 (INFORMATION) */}
+      <section className="px-4 py-8 text-center">
+        <h2 className="text-xl font-semibold mb-2">INFORMATION</h2>
+        <p className="text-gray-600 leading-relaxed">
+          식사와 주차 안내, 축하 화환 관련 등 필요한 안내 사항을 자유롭게
+          기재하세요.
+        </p>
+        {/* 필요 시 아이콘 추가 예시 */}
+        <div className="flex justify-center items-center gap-8 mt-4">
+          <div className="flex flex-col items-center">
+            <Image
+              src="/icon-food.png"
+              alt="식사 아이콘"
+              width={40}
+              height={40}
+            />
+            <p className="mt-2 text-sm">식사 안내</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <Image
+              src="/icon-parking.png"
+              alt="주차 아이콘"
+              width={40}
+              height={40}
+            />
+            <p className="mt-2 text-sm">주차 안내</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
