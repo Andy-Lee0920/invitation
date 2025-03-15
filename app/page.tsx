@@ -14,47 +14,77 @@ export default function Home() {
           priority
         />
         {/* 사진 위에 반투명 오버레이와 문구 */}
-        <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-white px-4">
-          <h1 className="text-3xl font-bold mb-2">우리가 결혼합니다</h1>
-          <p className="text-base">소중한 분들을 초대합니다</p>
+        <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white px-4">
+          <p className="text-3xl mb-2">준현이와 민희의 상견례</p>
+          <br />
+          <p className="text-3xl mb-2">가족 분들을 초대합니다</p>
         </div>
       </section>
 
-      {/* 2. 예쁜 글귀 섹션 */}
-      <section className="px-4 py-8 text-center">
-        <p className="text-xl italic leading-relaxed">
-          사랑은 함께 자라는 것입니다.
+      <section className="px-4 py-14 text-center">
+        <div className="relative w-full h-16 ">
+          <Image
+            src="/image/basic/name.png"
+            alt="이름 가운데"
+            fill
+            priority
+            className="object-contain object-center"
+          />
+        </div>
+      </section>
+
+      <section className="text-center pb-8">
+        <p className="text-lg leading-relaxed">
+          어느 따뜻한 봄날 4월에 귀한 분들을 모십니다.
           <br />
-          두 사람이 세상을 함께 바라보고,
           <br />
-          서로를 비추며 빛나는 것입니다.
+          곁에 있을 때 가장 나다운 모습이 되게 하는 사람과
+          <br />
+          평생 함께 하는 약속을 하려고 합니다.
+          <br />
+          <br />
+          인연이 가족으로 이어지는 첫걸음, <br />두 집안의 따뜻한 만남에 함께해
+          주세요.
+          <br />
         </p>
       </section>
 
       {/* 3. 장소 및 날짜 (WHEN & WHERE) */}
-      <section className="px-4 py-8 text-center">
+      <section className="px-4 py-14 text-center">
         <h2 className="text-2xl font-bold mb-4">WHEN & WHERE</h2>
         {/* 간단한 달력 느낌으로 구성 (원하시는 스타일에 맞게 수정) */}
-        <div className="inline-block border border-gray-300 rounded-md p-4">
-          <h3 className="text-lg font-semibold mb-2">2025년 5월</h3>
-          <div className="grid grid-cols-7 gap-1 text-sm">
-            <span className="text-gray-500">일</span>
-            <span className="text-gray-500">월</span>
-            <span className="text-gray-500">화</span>
-            <span className="text-gray-500">수</span>
-            <span className="text-gray-500">목</span>
-            <span className="text-gray-500">금</span>
-            <span className="text-gray-500">토</span>
-            {/* 1일부터 ~ 30일(예시) */}
+        <div className="inline-block rounded-md p-10">
+          <h3 className="text-xl font-semibold mb-3 text-center">2025년 4월</h3>
+          <div className="grid grid-cols-7 gap-2 text-base text-center">
+            {["일", "월", "화", "수", "목", "금", "토"].map((day, i) => (
+              <span
+                key={i}
+                className={`font-semibold ${
+                  i === 0 ? "text-red-500" : "text-gray-600"
+                }`}
+              >
+                {day}
+              </span>
+            ))}
+
+            {/* 빈 칸 (월요일 시작을 맞추기 위해) */}
+            {Array.from({ length: 2 }).map((_, i) => (
+              <span key={`empty-${i}`} />
+            ))}
+
+            {/* 날짜 출력 */}
             {Array.from({ length: 30 }).map((_, i) => {
               const day = i + 1;
-              const isWeddingDay = day === 20; // 원하는 날짜에 강조
+              const isHighlighted = day === 26;
+              const isSunday = (i + 2) % 7 === 0;
               return (
                 <span
                   key={day}
-                  className={`py-1 ${
-                    isWeddingDay
-                      ? "font-bold text-red-500 underline"
+                  className={`py-2 px-3 rounded-full ${
+                    isHighlighted
+                      ? "bg-pink-300 text-white font-bold"
+                      : isSunday
+                      ? "text-red-500"
                       : "text-gray-800"
                   }`}
                 >
@@ -64,9 +94,11 @@ export default function Home() {
             })}
           </div>
         </div>
+
         {/* 시간/장소 안내 */}
-        <p className="mt-4 text-lg">2025년 5월 20일 오후 2시</p>
-        <p className="text-lg">서울특별시 강남구 어딘가 웨딩홀</p>
+        <br />
+        <p className="mt-4 text-lg">2025년 4월 26 오후 1시 30분</p>
+        <p className="text-lg">서울특별시 강남구 자곡동 단미그린비 2층</p>
       </section>
 
       {/* 4. 갤러리 (좌우로 스크롤 가능한 이미지 슬라이드) */}
