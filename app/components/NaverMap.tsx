@@ -7,6 +7,13 @@ export default function NaverMap() {
   const LAT = 37.479298;
   const LONG = 127.1026861;
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log(
+        "네이버 API Client ID:",
+        process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID
+      );
+    }
+
     const initMap = () => {
       if (!window.naver || !mapRef.current) return;
 

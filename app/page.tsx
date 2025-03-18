@@ -1,3 +1,5 @@
+"use client"; // ✅ 클라이언트 컴포넌트로 선언
+
 import MusicPlayer from "@/public/components/MusicPlayer";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,8 +7,22 @@ import Gallery from "./components/Gallery";
 import ShareButtons from "./components/ShareButtons";
 import { Toaster } from "react-hot-toast";
 import NaverMap from "./components/NaverMap";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [isMapLoaded, setIsMapLoaded] = useState(true);
+
+  useEffect(() => {
+    // NaverMap 컴포넌트가 정상적으로 로드되었는지 확인
+    const checkMapLoaded = setTimeout(() => {
+      if (!window.naver || !window.naver.maps) {
+        setIsMapLoaded(false); // 네이버 지도 API가 없으면 이미지 표시
+      }
+    }, 3000); // 3초 동안 지도 로드를 기다림
+
+    return () => clearTimeout(checkMapLoaded);
+  }, []);
+
   return (
     <>
       <div className="w-full min-h-screen bg-white text-gray-800">
@@ -26,7 +42,7 @@ export default function Home() {
           </div>
 
           {/* 사진 위에 반투명 오버레이와 문구 */}
-          <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white px-4">
+          <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-end pb-20 text-white px-4">
             <p className="text-3xl mb-2">준현이와 민희의 상견례</p>
             <br />
             <p className="text-3xl mb-2">가족분들을 초대합니다</p>
@@ -194,14 +210,17 @@ export default function Home() {
 
           {/* 지도 이미지 (네이버 지도 캡처 또는 iframe) */}
           <div className="mt-10 mb-10">
-            {/* <Image
-              src="/image/basic/map-image.png" // 📌 지도 이미지 (public 폴더에 넣어야 함)
-              alt="위치 지도"
-              width={600}
-              height={400}
-              className="mx-auto rounded-lg"
-            /> */}
-            <NaverMap />
+            {isMapLoaded ? (
+              <NaverMap />
+            ) : (
+              <Image
+                src="/image/basic/map-image.png"
+                alt="위치 지도"
+                width={600}
+                height={400}
+                className="mx-auto rounded-lg"
+              />
+            )}
           </div>
 
           {/* 네이버 지도 & 카카오 지도 링크 */}

@@ -1,15 +1,18 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const images = Array.from(
-  { length: 5 },
-  (_, i) => `/image/gallery/gallery${i + 1}.png`
+  { length: 11 },
+  (_, i) => `/image/gallery/gallery (${i + 1}).jpg`
 );
 
 export default function Gallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -20,14 +23,31 @@ export default function Gallery() {
     setLightboxOpen(false);
   };
 
-  const prevImage = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const prevImage = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const nextImage = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const nextImage = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
     setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) {
+      nextImage();
+    } else if (diff < -50) {
+      prevImage();
+    }
   };
 
   return (
@@ -38,6 +58,7 @@ export default function Gallery() {
         <div className="w-1/4 border-t border-deep-green opacity-30"></div>
       </div>
 
+      {/* 갤러리 리스트 */}
       <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory">
         {images.map((src, i) => (
           <div
@@ -55,6 +76,7 @@ export default function Gallery() {
         ))}
       </div>
 
+      {/* 라이트박스 */}
       {lightboxOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-100"
@@ -63,6 +85,9 @@ export default function Gallery() {
           <div
             className="relative max-w-3xl max-h-full"
             onClick={(e) => e.stopPropagation()}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             <Image
               src={images[currentIndex]}
@@ -75,7 +100,7 @@ export default function Gallery() {
             {/* 이전 버튼 */}
             <button
               onClick={prevImage}
-              className="absolute top-1/2 left-0 transform -translate-y-1/2 p-3 bg-opacity-100 text-black text-4xl hover:bg-opacity-70"
+              className="absolute top-1/2 left-0 transform -translate-y-1/2 p-3 bg-opacity-100 text-white text-6xl hover:bg-opacity-70"
             >
               &#8249;
             </button>
@@ -83,7 +108,7 @@ export default function Gallery() {
             {/* 다음 버튼 */}
             <button
               onClick={nextImage}
-              className="absolute top-1/2 right-0 transform -translate-y-1/2 p-3 bg-opacity-100 text-black text-4xl hover:bg-opacity-70"
+              className="absolute top-1/2 right-0 transform -translate-y-1/2 p-3 bg-opacity-100 text-white text-6xl hover:bg-opacity-70"
             >
               &#8250;
             </button>
@@ -91,9 +116,9 @@ export default function Gallery() {
             {/* 닫기 버튼 */}
             <button
               onClick={closeLightbox}
-              className="absolute top-0 right-2 p-2 font-bold bg-opacity-100 text-black text-1xl hover:bg-opacity-70"
+              className="absolute top-0 right-2 p-2 font-bold bg-opacity-100 text-white text-2xl hover:bg-opacity-70"
             >
-              X
+              &#10005;
             </button>
           </div>
         </div>
