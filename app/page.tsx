@@ -4,6 +4,7 @@ import Link from "next/link";
 import Gallery from "./components/Gallery";
 import ShareButtons from "./components/ShareButtons";
 import { Toaster } from "react-hot-toast";
+import NaverMap from "./components/NaverMap";
 
 export default function Home() {
   return (
@@ -134,7 +135,7 @@ export default function Home() {
         </div>
         {/* 달력 컨테이너 */}
         <div className="inline-block rounded-md p-10">
-          <h3 className="text-xl font-semibold mb-3 text-center">2025년 4월</h3>
+          <h3 className="text-xl font-semibold mb-3 text-center">4월</h3>
 
           {/* 요일 */}
           <div className="grid grid-cols-7 gap-2 text-base text-center">
@@ -192,17 +193,19 @@ export default function Home() {
           </div>
 
           {/* 지도 이미지 (네이버 지도 캡처 또는 iframe) */}
-          <div className="mt-6">
-            <Image
+          <div className="mt-10 mb-10">
+            {/* <Image
               src="/image/basic/map-image.png" // 📌 지도 이미지 (public 폴더에 넣어야 함)
               alt="위치 지도"
               width={600}
               height={400}
               className="mx-auto rounded-lg"
-            />
+            /> */}
+            <NaverMap />
           </div>
+
           {/* 네이버 지도 & 카카오 지도 링크 */}
-          <div className="flex justify-center gap-6 mt-4">
+          <div className="flex justify-center gap-6 mt-7">
             <Link
               href="https://map.naver.com/v5/search/단미그린비"
               target="_blank"
@@ -256,7 +259,7 @@ export default function Home() {
               <li>발렛비 무료</li>
             </ul>
           </div>
-          <main className="mt-10">
+          <main className="mt-15">
             {/* 공유 버튼 추가 */}
             <ShareButtons />
 

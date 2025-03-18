@@ -9,7 +9,7 @@ export default function MusicPlayer() {
   useEffect(() => {
     if (audioRef.current) {
       // 오디오 볼륨을 50%로 설정
-      audioRef.current.volume = 0.5;
+      audioRef.current.volume = 0.3;
       // 자동 재생 시도 (브라우저 정책에 따라 차단될 수 있음)
       audioRef.current
         .play()
