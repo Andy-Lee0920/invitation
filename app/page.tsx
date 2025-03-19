@@ -77,7 +77,7 @@ export default function Home() {
             <br />
             양가 가족분들께 감사의 마음을 담아
             <br />
-            작은 식사 자리를 마련했습니다.
+            귀한 식사 자리를 마련했습니다.
             <br />
             <br />
             인연이 가족으로 이어지는 첫걸음, <br />두 집안의 따뜻한 만남에
@@ -90,7 +90,7 @@ export default function Home() {
             <span className="font-bold">이영무· 조용우</span> 의 아들&nbsp;
             <span className="font-bold">준현</span>
             <br />
-            <span className="font-bold">조창환 · 정호경</span> 의 딸&nbsp;
+            <span className="font-bold">조창완 · 정호경</span> 의 딸&nbsp;
             <span className="font-bold">민희</span>
             <br />
           </p>
