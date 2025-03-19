@@ -4,13 +4,17 @@ import { useEffect, useRef, useState } from "react";
 export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); // 스크롤 감지 상태
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3;
+    }
+
     const handleScroll = () => {
       if (!isScrolled && audioRef.current) {
         setIsScrolled(true);
-        audioRef.current.volume = 0.3; // 초기 볼륨 설정
+        audioRef.current.volume = 0.3;
         audioRef.current
           .play()
           .then(() => setIsPlaying(true))

@@ -59,7 +59,7 @@ export default function ShareButtons() {
       objectType: "feed",
       content: {
         title: "준현이와 민희의 상견례",
-        description: "가족분들을 초대합니다",
+        description: "우리의 특별한 날에 초대합니다! 🎉",
         imageUrl: `${window.location.origin}/image/basic/main.png`,
         link: {
           mobileWebUrl: window.location.href,

@@ -43,9 +43,9 @@ export default function Gallery() {
 
   const handleTouchEnd = () => {
     const diff = touchStartX.current - touchEndX.current;
-    if (diff > 50) {
+    if (diff > 100) {
       nextImage();
-    } else if (diff < -50) {
+    } else if (diff < -100) {
       prevImage();
     }
   };
@@ -59,7 +59,7 @@ export default function Gallery() {
       </div>
 
       {/* 갤러리 리스트 */}
-      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory">
+      <div className="flex gap-4 overflow-x-auto snap-x snap-proximity">
         {images.map((src, i) => (
           <div
             key={i}
@@ -96,6 +96,11 @@ export default function Gallery() {
               height={600}
               className="object-contain rounded"
             />
+
+            {/* 좌측 하단 이미지 위치 표시 */}
+            <div className="absolute bottom-4 left-4 text-white bg-black bg-opacity-50 px-3 py-1 rounded">
+              {currentIndex + 1} / {images.length}
+            </div>
 
             {/* 이전 버튼 */}
             <button
