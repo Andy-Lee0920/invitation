@@ -1,5 +1,4 @@
-"use client"; // ✅ 클라이언트 컴포넌트로 선언
-
+"use client";
 import MusicPlayer from "@/public/components/MusicPlayer";
 import Image from "next/image";
 import Link from "next/link";
@@ -209,7 +208,7 @@ export default function Home() {
           </div>
 
           {/* 지도 이미지 (네이버 지도 캡처 또는 iframe) */}
-          <div className="mt-10 mb-10">
+          <div className="mt-10 mb-10 px-5">
             {isMapLoaded ? (
               <NaverMap />
             ) : (

@@ -58,15 +58,15 @@ export default function ShareButtons() {
     window.Kakao.Link.sendDefault({
       objectType: "feed",
       content: {
-        title: "초대장 공유",
-        description: "우리의 특별한 날에 초대합니다! 🎉",
+        title: "준현이와 민희의 상견례",
+        description: "가족분들을 초대합니다",
         imageUrl: `${window.location.origin}/image/basic/main.png`,
         link: {
           mobileWebUrl: window.location.href,
           webUrl: window.location.href,
         },
       },
-      buttonTitle: "자세히 보기",
+      buttonTitle: "초대장 보기",
     });
   };
 
