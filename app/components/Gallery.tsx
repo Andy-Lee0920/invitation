@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const images = Array.from(
   { length: 11 },
@@ -10,9 +10,6 @@ const images = Array.from(
 export default function Gallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
 
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
@@ -31,23 +28,6 @@ export default function Gallery() {
   const nextImage = (e?: React.MouseEvent<HTMLButtonElement>) => {
     e?.stopPropagation();
     setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
-    if (diff > 100) {
-      nextImage();
-    } else if (diff < -100) {
-      prevImage();
-    }
   };
 
   return (
@@ -85,9 +65,6 @@ export default function Gallery() {
           <div
             className="relative max-w-3xl max-h-full"
             onClick={(e) => e.stopPropagation()}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
           >
             <Image
               src={images[currentIndex]}
